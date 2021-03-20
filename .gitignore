@@ -1,0 +1,6 @@
+__pyache__/
+*/__pycache__/*
+cert_x509.db
+data/*
+logs/error*
+logs/success*
