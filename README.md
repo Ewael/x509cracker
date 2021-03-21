@@ -24,11 +24,13 @@ To track the machines the crawler is running on:
 
 ## Cracker
 
-@TODO
+
 
 ## TODO
 
 - Translate the report in english
 - Test the crawler again (IP configuration + databases management)
 
-YOU SHOULD ALSO UPDATE THE SUBNETS IN crawl.py
+---
+
+![lse](lse.png)
