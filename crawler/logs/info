@@ -1,0 +1,4 @@
+This file exists only to keep this directory up in the git so we do not have to
+create it when running the crawler.
+
+This dir contains every errors of each thread by thread id.
