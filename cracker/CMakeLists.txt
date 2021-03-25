@@ -39,8 +39,22 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -pedantic")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OPT_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g3 -fsanitize=address")
 
-# LIBRARIES
+if(APPLE)
+   add_definitions("-I/usr/local/include -I/opt/local/include")
+endif()
+if(MSVC)
+  find_package(GMPXX REQUIRED)
+  set(GMP_LIB "${GMPXX_LIBRARIES}")
+  set(GMPXX_LIB "${GMPXX_LIBRARIES}")
+  include_directories("${VCPKG_INCLUDE_DIRS}")
+else()
+  find_library(GMP_LIB gmp REQUIRED)
+  find_library(GMPXX_LIB gmpxx REQUIRED)
+  message(STATUS "Found gmp: ${GMP_LIB}")
+  message(STATUS "Found gmpxx: ${GMPXX_LIB}")
+endif()
 
+set(LIBRARIES ${GMPXX_LIB} ${GMP_LIB})
 
 # CRACKER
 add_executable(cracker)
