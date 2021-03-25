@@ -10,7 +10,22 @@ namespace cracker
                 input[0] } };
         }
 
-        auto product_tree = std::vector<std::vector<int>>();
+        auto level = std::vector<int>();
+        for (size_t i = 0; i < input.size(); i += 2)
+        {
+            // In case input size is odd
+            if (i == input.size() - 1)
+            {
+                level.push_back(input[i]);
+            }
+            else
+            {
+                level.push_back(input[i] * input[i + 1]);
+            }
+        }
+
+        auto product_tree = compute_product_tree(level);
+        product_tree.push_back(level);
         return product_tree;
     }
 } // namespace cracker
