@@ -26,7 +26,7 @@ namespace cracker
         }
 
         auto product_tree = compute_product_tree(level);
-        product_tree.push_back(level);
+        product_tree.push_back(input);
         return product_tree;
     }
 } // namespace cracker
