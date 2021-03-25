@@ -5,7 +5,8 @@
 
 TEST(product_tree, one_elm)
 {
-    auto product_tree = cracker::compute_product_tree({ 42 });
+    auto leaves = std::vector<cracker::bignum>{ 42 };
+    auto product_tree = cracker::compute_product_tree(leaves);
     ASSERT_EQ(product_tree.size(), 1);
     ASSERT_EQ(product_tree[0].size(), 1);
     EXPECT_EQ(product_tree[0][0], 42);
@@ -13,7 +14,8 @@ TEST(product_tree, one_elm)
 
 TEST(product_tree, even_elm)
 {
-    auto product_tree = cracker::compute_product_tree({ 42, 24 });
+    auto leaves = std::vector<cracker::bignum>{ 42, 24 };
+    auto product_tree = cracker::compute_product_tree(leaves);
     ASSERT_EQ(product_tree.size(), 2);
     ASSERT_EQ(product_tree[0].size(), 1);
     EXPECT_EQ(product_tree[0][0], 1008);
@@ -24,7 +26,8 @@ TEST(product_tree, even_elm)
 
 TEST(product_tree, odd_elm)
 {
-    auto product_tree = cracker::compute_product_tree({ 42, 24, 3 });
+    auto leaves = std::vector<cracker::bignum>{ 42, 24, 3 };
+    auto product_tree = cracker::compute_product_tree(leaves);
     ASSERT_EQ(product_tree.size(), 3);
     ASSERT_EQ(product_tree[0].size(), 1);
     EXPECT_EQ(product_tree[0][0], 3024);
@@ -44,7 +47,8 @@ TEST(product_tree, two_bignum)
     auto b = cracker::bignum(
         "354685468546853274685498654896549865748695498657468546874568"
         "5341685468574681");
-    auto product_tree = cracker::compute_product_tree({ a, b });
+    auto leaves = std::vector<cracker::bignum>{ a, b };
+    auto product_tree = cracker::compute_product_tree(leaves);
     ASSERT_EQ(product_tree.size(), 2);
     ASSERT_EQ(product_tree[0].size(), 1);
     EXPECT_EQ(product_tree[0][0],
@@ -55,11 +59,12 @@ TEST(product_tree, two_bignum)
                               "4"));
 }
 
-TEST(product_tree, very_bignum)
+TEST(product_tree, pow_twenty)
 {
     auto a = cracker::bignum("5498653468532168534163541685324986541584784574");
-    auto product_tree = cracker::compute_product_tree(
-        { a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a });
+    auto leaves = std::vector<cracker::bignum>{ a, a, a, a, a, a, a, a, a, a,
+                                                a, a, a, a, a, a, a, a, a, a };
+    auto product_tree = cracker::compute_product_tree(leaves);
     ASSERT_TRUE(product_tree.size() > 1);
     ASSERT_EQ(product_tree[0].size(), 1);
     auto result = cracker::bignum(

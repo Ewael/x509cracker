@@ -1,12 +1,16 @@
 #include <gmpxx.h>
 #include <iostream>
 
+#include "batch_gcd.hh"
+
 int main()
 {
-    mpz_class a, b;
-    a = "86546854685346541654865436854368546845986587457986479684745879654";
-    b = "3546854685468532746854986548965498657486954986574685468745685341685468"
-        "574681";
-    std::cout << a * b << std::endl;
+    std::vector<cracker::bignum> modulos{ 1909, 2923, 291,  205,  989,
+                                          62,   451,  1943, 1079, 2419 };
+    auto res = cracker::compute_all(modulos);
+    for (auto &i : res)
+    {
+        std::cout << i << std::endl;
+    }
     return 0;
 }
