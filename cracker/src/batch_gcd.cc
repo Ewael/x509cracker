@@ -1,5 +1,6 @@
 #include "batch_gcd.hh"
 
+#include <iostream>
 #include <math.h>
 
 namespace cracker
@@ -12,7 +13,7 @@ namespace cracker
     }
 
     std::vector<std::vector<bignum>>
-    compute_product_tree(std::vector<bignum> &modulos)
+    compute_product_tree_rec(std::vector<bignum> &modulos)
     {
         if (modulos.size() == 1)
         {
@@ -34,14 +35,24 @@ namespace cracker
             }
         }
 
-        auto product_tree = compute_product_tree(level);
+        auto product_tree = compute_product_tree_rec(level);
         product_tree.push_back(modulos);
         return product_tree;
+    }
+
+    std::vector<std::vector<bignum>>
+    compute_product_tree(std::vector<bignum> &modulos)
+    {
+        assert(modulos.size() > 0);
+        std::cout << "Computing product tree" << std::endl;
+        return compute_product_tree_rec(modulos);
     }
 
     std::vector<bignum>
     compute_remainders(std::vector<std::vector<bignum>> &product_tree)
     {
+        std::cout << "Computing remainders" << std::endl;
+
         std::vector<bignum> remainders = product_tree.front();
         product_tree.erase(product_tree.begin());
         while (product_tree.size() > 0)
@@ -63,13 +74,22 @@ namespace cracker
     std::vector<bignum> compute_gcds(std::vector<bignum> modulos,
                                      std::vector<bignum> &remainders)
     {
+        std::cout << "Computing gcds" << std::endl;
+
         auto gcds = std::vector<bignum>();
         for (size_t i = 0; i < max(modulos.size(), remainders.size()); i++)
         {
-            bignum tmp;
+            bignum result;
             bignum div = remainders[i] / modulos[i];
-            mpz_gcd(tmp.get_mpz_t(), div.get_mpz_t(), modulos[i].get_mpz_t());
-            gcds.push_back(tmp);
+            mpz_gcd(result.get_mpz_t(), div.get_mpz_t(),
+                    modulos[i].get_mpz_t());
+
+            if (result != 1)
+            {
+                std::cout << "Factorization possible at " << i << std::endl;
+            }
+
+            gcds.push_back(result);
         }
         return gcds;
     }
