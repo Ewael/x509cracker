@@ -1,4 +1,3 @@
-//#include <gmpxx.h>
 #include <gtest/gtest.h>
 
 #include "batch_gcd.hh"
