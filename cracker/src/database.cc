@@ -26,7 +26,7 @@ namespace cracker
 
         if (sqlite3_open(filename, &db))
             throw std::invalid_argument("Could not open database.");
-        std::string request("SELECT modulus FROM certificates LIMIT 0,10000");
+        std::string request("SELECT modulus FROM certificates");
 
         int ret = sqlite3_exec(db, request.c_str(), request_callback,
                                static_cast<void *>(&modulos), NULL);

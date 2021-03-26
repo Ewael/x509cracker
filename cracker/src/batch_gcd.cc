@@ -53,17 +53,15 @@ namespace cracker
     {
         std::cout << "Computing remainders" << std::endl;
 
-        std::vector<bignum> remainders = product_tree.front();
-        product_tree.erase(product_tree.begin());
-        while (product_tree.size() > 0)
+        std::vector<bignum> remainders = product_tree[0];
+        for (size_t k = 1; k < product_tree.size(); k++)
         {
-            std::vector<bignum> level = product_tree.front();
-            product_tree.erase(product_tree.begin());
             std::vector<bignum> next_remainders = std::vector<bignum>();
-            for (size_t i = 0; i < level.size(); i++)
+            for (size_t i = 0; i < product_tree[k].size(); i++)
             {
-                next_remainders.push_back(remainders[floor(i / 2)]
-                                          % (level[i] * level[i]));
+                next_remainders.push_back(
+                    remainders[floor(i / 2)]
+                    % (product_tree[k][i] * product_tree[k][i]));
             }
             remainders = next_remainders;
         }
