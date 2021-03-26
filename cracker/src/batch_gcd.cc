@@ -1,6 +1,7 @@
 #include "batch_gcd.hh"
 
 #include <iostream>
+#include <cassert>
 #include <math.h>
 
 namespace cracker

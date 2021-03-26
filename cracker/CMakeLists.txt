@@ -1,5 +1,5 @@
 set(OPT_FLAGS
-    "-O3 -Ofast, -march=native -flto"
+    "-march=native -flto"
 )
 
 # END OPTIMIZATION FLAGS

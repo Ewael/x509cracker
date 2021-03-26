@@ -4,3 +4,4 @@ cert_x509.db
 data/*
 logs/error*
 logs/success*
+*build/
