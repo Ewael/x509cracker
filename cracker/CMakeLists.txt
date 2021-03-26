@@ -7,6 +7,7 @@ set(OPT_FLAGS
 # Put all your sources here EXCEPT YOUR MAIN.CC
 set(SRC_ENGINE
     "src/batch_gcd.cc"
+    "src/database.cc"
 )
 
 # Directories containing headers must be specified in the include_directories()
@@ -16,6 +17,7 @@ include_directories(
 
 # Put your test files here
 set(SRC_GTEST
+    "tests/unit/gcds.cc"
     "tests/unit/test_main.cc"
     "tests/unit/product_tree.cc"
 )
@@ -54,7 +56,14 @@ else()
   message(STATUS "Found gmpxx: ${GMPXX_LIB}")
 endif()
 
-set(LIBRARIES ${GMPXX_LIB} ${GMP_LIB})
+find_package (SQLite3)
+if (SQLITE3_FOUND)
+  message(STATUS "Found sqlite3: ${SQLITE3_LIBRARIES}")
+else()
+  message(STATUS "Sqlite3 not found")
+endif (SQLITE3_FOUND)
+
+set(LIBRARIES ${GMPXX_LIB} ${GMP_LIB} sqlite3)
 
 # CRACKER
 add_executable(cracker)

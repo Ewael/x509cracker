@@ -2,15 +2,20 @@
 #include <iostream>
 
 #include "batch_gcd.hh"
+#include "database.hh"
 
-int main()
+int main(int argc, char **argv)
 {
-    std::vector<cracker::bignum> modulos{ 1909, 2923, 291,  205,  989,
-                                          62,   451,  1943, 1079, 2419 };
-    auto res = cracker::compute_all(modulos);
-    for (auto &i : res)
+    if (argc != 2)
     {
-        std::cout << i << std::endl;
+        std::cout << "Usage: " << argv[0] << " <database path>" << std::endl;
+        return 1;
     }
+
+    auto modulos = cracker::get_modulos_from_file(argv[1]);
+    std::cout << "Got " << modulos.size() << " modulos to compute" << std::endl;
+
+    auto gcds = cracker::compute_all(modulos);
+
     return 0;
 }
