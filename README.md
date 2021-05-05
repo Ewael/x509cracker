@@ -36,6 +36,7 @@ and use the cracker as prompted: `./cracker <database path>`.
 
 ## TODO
 
+- Add the report from Overleaf
 - Translate the report in english
 
 ---
