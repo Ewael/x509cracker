@@ -24,12 +24,19 @@ To track the machines the crawler is running on:
 
 ## Cracker
 
+This implementation of the cracker uses the batch-gcd algorithm as described in
+the report. This is coded in pure C++ and you must follow those steps to run it
+properly:
 
+- create a `build` directory and `cmake ..` so it is easy to clean up
+- do not forget to install `gtest` and `gmock` in order to have to have the testsuite
+
+Create you database with the correct format or using the crawler appropriately
+and use the cracker as prompted: `./cracker <database path>`.
 
 ## TODO
 
 - Translate the report in english
-- Test the crawler again (IP configuration + databases management)
 
 ---
 
