@@ -18,6 +18,7 @@ namespace cracker
     {
         if (modulos.size() == 1)
         {
+            // Ending recursion, we have only one element: the result of the product
             return std::vector<std::vector<bignum>>{ std::vector<bignum>{
                 modulos[0] } };
         }
@@ -32,6 +33,7 @@ namespace cracker
             }
             else
             {
+                // Adding the product of the two leaves
                 level.push_back(modulos[i] * modulos[i + 1]);
             }
         }
@@ -80,6 +82,7 @@ namespace cracker
         {
             bignum result;
             bignum div = remainders[i] / modulos[i];
+            // Compute gcd(r/n, n)
             mpz_gcd(result.get_mpz_t(), div.get_mpz_t(),
                     modulos[i].get_mpz_t());
 
