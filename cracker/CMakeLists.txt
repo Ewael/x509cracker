@@ -8,6 +8,7 @@ set(OPT_FLAGS
 set(SRC_ENGINE
     "src/batch_gcd.cc"
     "src/database.cc"
+    "src/from_dir.cc"
 )
 
 # Directories containing headers must be specified in the include_directories()

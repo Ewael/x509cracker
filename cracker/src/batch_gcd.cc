@@ -85,7 +85,7 @@ namespace cracker
 
             if (result != 1)
             {
-                std::cout << "Factorization possible at " << i << std::endl;
+                std::cout << "Factorization possible at index " << i << std::endl;
             }
 
             gcds.push_back(result);
