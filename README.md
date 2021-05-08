@@ -28,15 +28,32 @@ This implementation of the cracker uses the batch-gcd algorithm as described in
 the report. This is coded in pure C++ and you must follow those steps to run it
 properly:
 
-- create a `build` directory and `cmake ..` so it is easy to clean up
-- do not forget to install `gtest` and `gmock` in order to have to have the testsuite
+- create a `build` directory and use `cmake ..` so it is easy to clean up
+- compile with `make -j 12`
 
-Create you database with the correct format or using the crawler appropriately
-and use the cracker as prompted: `./cracker <database path>`.
+You also need the following packages:
+- `gtest`
+- `gmock`
+- `gmp`
+- `gmpxx`
+- `sqlite3`
+
+To use the cracker with a database, create it with the correct format or using
+the crawler appropriately.
+
+```
+./cracker --db <path to your db>
+```
+
+You can also use a directory containing modulos in hexadecimal format. The files
+must have the `.hex` prefixes (see PoC).
+
+```
+./cracker --from-dir <directory containing .hex files>
+```
 
 ## TODO
 
-- Add the report from Overleaf
 - Translate the report in english
 
 ---
