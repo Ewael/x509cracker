@@ -5,7 +5,7 @@
 You will need `gmp` and `gmpxx` packages, but also `sqlite3` to compile the project.
 
 Run
-````bash
+```bash
 mkdir build && cd build
 cmake ..
 make -j
