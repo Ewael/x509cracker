@@ -4,6 +4,7 @@
 
 namespace cracker
 {
+    // Parsing select result
     int request_callback(void *data, int argc, char **argv, char **azColName)
     {
         std::vector<bignum> *modulos = static_cast<std::vector<bignum> *>(data);
@@ -12,6 +13,7 @@ namespace cracker
         {
             if (!argv[i])
                 continue;
+            // Convert hex modulo to bignum
             bignum n;
             mpz_set_str(n.get_mpz_t(), argv[i] + 2, 16);
             modulos->push_back(n);
@@ -28,6 +30,7 @@ namespace cracker
             throw std::invalid_argument("Could not open database.");
         std::string request("SELECT modulus FROM certificates");
 
+        // Executing select
         int ret = sqlite3_exec(db, request.c_str(), request_callback,
                                static_cast<void *>(&modulos), NULL);
         sqlite3_close(db);
